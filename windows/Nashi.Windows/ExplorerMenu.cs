@@ -11,13 +11,15 @@ internal static class ExplorerMenu
     internal static bool Enabled{get{using var key=Registry.CurrentUser.OpenSubKey(Root);return key is not null;}}
     internal static void Enable(string executable)
     {
-        Registry.CurrentUser.DeleteSubKeyTree(Root,false);
+        // Values are rewritten in place, so a refresh that fails part way keeps a working menu.
         using var root=Registry.CurrentUser.CreateSubKey(Root);root.SetValue("MUIVerb","Nashi");root.SetValue("Icon","\""+executable+"\",0");root.SetValue("SubCommands","");root.SetValue("MultiSelectModel","Player");
+        using var verbs=root.CreateSubKey("shell");
         foreach(var (key,mode,title) in Commands)
         {
-            using var verb=root.CreateSubKey(@"shell\"+key);verb.SetValue("MUIVerb",L10n.Text(title));verb.SetValue("MultiSelectModel","Player");
+            using var verb=verbs.CreateSubKey(key);verb.SetValue("MUIVerb",L10n.Text(title));verb.SetValue("MultiSelectModel","Player");
             using var command=verb.CreateSubKey("command");command.SetValue("","\""+executable+"\" --explorer "+mode+" \"%1\"");
         }
+        foreach(var stale in verbs.GetSubKeyNames().Except(Commands.Select(c=>c.Key)))verbs.DeleteSubKeyTree(stale,false);
     }
     internal static void Disable()=>Registry.CurrentUser.DeleteSubKeyTree(Root,false);
     /// Rewrites an enabled menu after the portable folder moves or the language changes.
