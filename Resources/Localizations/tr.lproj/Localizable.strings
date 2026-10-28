@@ -377,6 +377,7 @@
 "CONVERT TO" = "ŞUNA DÖNÜŞTÜR";
 "CONVERT · WHILE DRAGGING" = "DÖNÜŞTÜR · SÜRÜKLERKEN";
 "CONVERT, FINE-TUNE, AND SEND THEM ON THEIR WAY." = "DÖNÜŞTÜR, İNCE AYAR YAP VE PAYLAŞ.";
+"CONVERT, TOOLS AND FILE ACTIONS FOR SELECTED FILES. ON WINDOWS 11 THEY APPEAR UNDER SHOW MORE OPTIONS." = "SEÇİLİ DOSYALAR İÇİN DÖNÜŞTÜR, ARAÇLAR VE DOSYA İŞLEMLERİ. WINDOWS 11'DE DİĞER SEÇENEKLERİ GÖSTER ALTINDA YER ALIR.";
 "COPY" = "KOPYALA";
 "COPY A FILE, SOME TEXT, AN IMAGE OR A PUBLIC MEDIA LINK FIRST." = "ÖNCE BİR DOSYA, METİN, GÖRSEL VEYA HERKESE AÇIK BİR MEDYA BAĞLANTISI KOPYALA.";
 "COPY A LINK → ⌃⇧D, OR DRAG IT WITH ⌘." = "BAĞLANTIYI KOPYALA → ⌃⇧D VEYA ⌘ İLE SÜRÜKLE.";
@@ -534,6 +535,7 @@
 "Convert to %@" = "%@ biçimine dönüştür";
 "Convert to %lld" = "%lld biçimine dönüştür";
 "Convert · while dragging" = "Dönüştür · sürüklerken";
+"Convert, Tools and File actions for selected files. On Windows 11 they appear under Show more options." = "Seçili dosyalar için Dönüştür, Araçlar ve Dosya işlemleri. Windows 11'de Diğer seçenekleri göster altında yer alır.";
 "Convert, fine-tune, and send them on their way." = "Dönüştür, ince ayar yap ve paylaş.";
 "Copy" = "Kopyala";
 "Copy Path" = "Yolu Kopyala";
@@ -708,6 +710,7 @@
 "EVERYTHING HAS A NEXT FORM." = "HER DOSYANIN YENİ BİR HÂLİ VAR.";
 "EXPAND FLOAT" = "FLOAT’I GENİŞLET";
 "EXPANDED UPDATE IS TOO LARGE." = "AÇILAN GÜNCELLEME ÇOK BÜYÜK.";
+"EXPLORER MENU" = "DOSYA GEZGİNİ MENÜSÜ";
 "EXPORT CLIPS" = "KLİPLERİ KAYDET";
 "EXPORT ONE VIDEO" = "TEK VİDEO OLARAK KAYDET";
 "EXPOSURE" = "POZLAMA";
@@ -733,6 +736,7 @@
 "Everything has a next form." = "Her dosyanın yeni bir hâli var.";
 "Expand Float" = "Float’ı genişlet";
 "Expanded update is too large." = "Açılan güncelleme çok büyük.";
+"Explorer menu" = "Dosya Gezgini menüsü";
 "Export One Video" = "Tek Video Olarak Kaydet";
 "Export clips" = "Klipleri kaydet";
 "Export one video" = "Tek video olarak kaydet";
@@ -1591,6 +1595,7 @@
 "SHOW IN EXPLORER" = "DOSYA GEZGİNİ'NDE GÖSTER";
 "SHOW IN FINDER" = "FINDER'DA GÖSTER";
 "SHOW NASHI IN FINDER" = "NASHI'Yİ FINDER'DA GÖSTER";
+"SHOW NASHI IN THE EXPLORER RIGHT-CLICK MENU" = "NASHI'Yİ DOSYA GEZGİNİ SAĞ TIK MENÜSÜNDE GÖSTER";
 "SHOW ORIGINAL" = "ORİJİNALİ GÖSTER";
 "SILENCE THRESHOLD" = "SESSİZLİK EŞİĞİ";
 "SKIP TOUR" = "TURU GEÇ";
@@ -1718,6 +1723,7 @@
 "Sharpness" = "Keskinlik";
 "Shift locks the ratio · Return crops\nDrag inside to move; drag a handle to resize." = "Shift oranı kilitler · Enter kırpar\nTaşımak için alanın içini, boyutlandırmak için tutamağı sürükle.";
 "Show Nashi in Finder" = "Nashi'yi Finder'da Göster";
+"Show Nashi in the Explorer right-click menu" = "Nashi'yi Dosya Gezgini sağ tık menüsünde göster";
 "Show Original" = "Orijinali Göster";
 "Show in Explorer" = "Dosya Gezgini'nde Göster";
 "Show in Finder" = "Finder'da Göster";

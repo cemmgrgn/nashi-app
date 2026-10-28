@@ -377,6 +377,7 @@
 "CONVERT TO" = "CONVERT TO";
 "CONVERT · WHILE DRAGGING" = "CONVERT · WHILE DRAGGING";
 "CONVERT, FINE-TUNE, AND SEND THEM ON THEIR WAY." = "CONVERT, FINE-TUNE, AND SEND THEM ON THEIR WAY.";
+"CONVERT, TOOLS AND FILE ACTIONS FOR SELECTED FILES. ON WINDOWS 11 THEY APPEAR UNDER SHOW MORE OPTIONS." = "CONVERT, TOOLS AND FILE ACTIONS FOR SELECTED FILES. ON WINDOWS 11 THEY APPEAR UNDER SHOW MORE OPTIONS.";
 "COPY" = "COPY";
 "COPY A FILE, SOME TEXT, AN IMAGE OR A PUBLIC MEDIA LINK FIRST." = "COPY A FILE, SOME TEXT, AN IMAGE OR A PUBLIC MEDIA LINK FIRST.";
 "COPY A LINK → ⌃⇧D, OR DRAG IT WITH ⌘." = "COPY A LINK → ⌃⇧D, OR DRAG IT WITH ⌘.";
@@ -534,6 +535,7 @@
 "Convert to %@" = "Convert to %@";
 "Convert to %lld" = "Convert to %lld";
 "Convert · while dragging" = "Convert · while dragging";
+"Convert, Tools and File actions for selected files. On Windows 11 they appear under Show more options." = "Convert, Tools and File actions for selected files. On Windows 11 they appear under Show more options.";
 "Convert, fine-tune, and send them on their way." = "Convert, fine-tune, and send them on their way.";
 "Copy" = "Copy";
 "Copy Path" = "Copy Path";
@@ -708,6 +710,7 @@
 "EVERYTHING HAS A NEXT FORM." = "EVERYTHING HAS A NEXT FORM.";
 "EXPAND FLOAT" = "EXPAND FLOAT";
 "EXPANDED UPDATE IS TOO LARGE." = "EXPANDED UPDATE IS TOO LARGE.";
+"EXPLORER MENU" = "EXPLORER MENU";
 "EXPORT CLIPS" = "EXPORT CLIPS";
 "EXPORT ONE VIDEO" = "EXPORT ONE VIDEO";
 "EXPOSURE" = "EXPOSURE";
@@ -733,6 +736,7 @@
 "Everything has a next form." = "Everything has a next form.";
 "Expand Float" = "Expand Float";
 "Expanded update is too large." = "Expanded update is too large.";
+"Explorer menu" = "Explorer menu";
 "Export One Video" = "Export One Video";
 "Export clips" = "Export clips";
 "Export one video" = "Export one video";
@@ -1591,6 +1595,7 @@
 "SHOW IN EXPLORER" = "SHOW IN EXPLORER";
 "SHOW IN FINDER" = "SHOW IN FINDER";
 "SHOW NASHI IN FINDER" = "SHOW NASHI IN FINDER";
+"SHOW NASHI IN THE EXPLORER RIGHT-CLICK MENU" = "SHOW NASHI IN THE EXPLORER RIGHT-CLICK MENU";
 "SHOW ORIGINAL" = "SHOW ORIGINAL";
 "SILENCE THRESHOLD" = "SILENCE THRESHOLD";
 "SKIP TOUR" = "SKIP TOUR";
@@ -1718,6 +1723,7 @@
 "Sharpness" = "Sharpness";
 "Shift locks the ratio · Return crops\nDrag inside to move; drag a handle to resize." = "Shift locks the ratio · Return crops\nDrag inside to move; drag a handle to resize.";
 "Show Nashi in Finder" = "Show Nashi in Finder";
+"Show Nashi in the Explorer right-click menu" = "Show Nashi in the Explorer right-click menu";
 "Show Original" = "Show Original";
 "Show in Explorer" = "Show in Explorer";
 "Show in Finder" = "Show in Finder";

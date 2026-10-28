@@ -17,6 +17,12 @@ try
     try{LocalizationChecks.Run(Check,languageRoot);}finally{Directory.Delete(languageRoot,true);}
     await DownloadChecks.Run(Check,root);
     ToolSetupChecks.Run(Check,root);
+    var explorerFile=Path.Combine(root,"Explorer ' $().png");
+    Check(ExplorerLaunch.Parse(["--explorer","convert",explorerFile]) is {Mode:"convert"} parsed&&parsed.Paths.SequenceEqual([explorerFile]),"Explorer command lost its wheel or file");
+    Check(ExplorerLaunch.Parse(["--explorer","delete",explorerFile]) is null&&ExplorerLaunch.Parse(["--explorer"]) is null&&ExplorerLaunch.Parse([explorerFile]) is null,"Unknown or incomplete Explorer command was accepted");
+    Check(ExplorerLaunch.Decode(ExplorerLaunch.Encode("actions",[explorerFile])) is {Mode:"actions"} decoded&&decoded.Paths.SequenceEqual([explorerFile]),"Forwarded Explorer launch did not round trip");
+    var marker=ExplorerLaunch.Encode("tools",[explorerFile])[0];Check(!File.Exists(marker)&&!Directory.Exists(marker)&&!Path.IsPathFullyQualified(marker),"Explorer marker could be mistaken for a file");
+    Check(ExplorerLaunch.Decode([explorerFile]) is null&&ExplorerLaunch.Decode(["nashi-explorer:delete",explorerFile]) is null&&ExplorerLaunch.Decode(["nashi-explorer:convert"]) is null,"Plain or invalid forwarded launch was treated as an Explorer command");
     var parityRoot=Path.Combine(root,"Parity");Directory.CreateDirectory(parityRoot);try{ParityChecks.Run(Check,parityRoot);}finally{Directory.Delete(parityRoot,true);}
     Check(FeatureCatalog.IsVideo("Clip.m4v")&&FeatureCatalog.IsAudio("Clip.aac"),"Media preview classification differs from Mac aliases");
     foreach(var area in new[]{new WindowFrame(0,24,1511,910),new WindowFrame(-1920,-1030,1920,1006),new WindowFrame(1512,40,1727,1090)})

@@ -6,6 +6,7 @@ public sealed partial class MainWindow
     private string[]? pendingLaunch;private System.Windows.Threading.DispatcherTimer? launchTimer;
     internal void AcceptLaunch(string[] paths)
     {
+        if(ExplorerLaunch.Decode(paths) is {} explorer){AcceptExplorer(explorer.Mode,explorer.Paths);return;}
         ShowMain();if(paths.Length==0)return;if(busy||!DesktopGeometry.IsInteractive(this)){pendingLaunch=paths;launchTimer??=new(){Interval=TimeSpan.FromMilliseconds(200)};launchTimer.Stop();launchTimer.Tick-=AcceptPending;launchTimer.Tick+=AcceptPending;launchTimer.Start();return;}files.Clear();Add(paths);ShowLibrary(false);
     }
     private void AcceptPending(object? sender,EventArgs e){if(busy||!DesktopGeometry.IsInteractive(this))return;launchTimer?.Stop();if(pendingLaunch is {} paths){pendingLaunch=null;AcceptLaunch(paths);}}
@@ -15,7 +16,7 @@ public sealed partial class MainWindow
         globalDrag=new(this,preferences,OnGlobalDrop,OpenCopiedLink);
         try{tray=new(this,ShowMain,TrayMenu);}catch(InvalidOperationException error){L10n.SetText(status,error.Message);}
         Closing+=(_,e)=>{if(!e.Cancel&&tray is not null&&preferences.Value.KeepInTray&&!quitting){e.Cancel=true;Hide();}};
-        Closed+=(_,_)=>{launchTimer?.Stop();tray?.Dispose();};if(Environment.GetCommandLineArgs().Contains("--background"))Hide();
+        Closed+=(_,_)=>{launchTimer?.Stop();explorerTimer?.Stop();tray?.Dispose();};var args=Environment.GetCommandLineArgs();if(args.Contains("--background")||args.Contains("--explorer"))Hide();
     }
     private void ShowMain(){Show();WindowState=WindowState.Normal;Activate();if(monitorToolSetup)Dispatcher.BeginInvoke(OfferFirstRunTools);}
     private System.Windows.Controls.ContextMenu TrayMenu()
@@ -24,7 +25,7 @@ public sealed partial class MainWindow
         void Item(string text,Action action){var item=new System.Windows.Controls.MenuItem();L10n.Bind(item,System.Windows.Controls.HeaderedItemsControl.HeaderProperty,text);item.Click+=(_,_)=>action();menu.Items.Add(item);}
         Item("Open Nashi",ShowMain);Item("Library",()=>{ShowMain();ShowLibrary(true);});Item("Download copied link",OpenCopiedLink);Item("Settings",()=>{ShowMain();ShowSettings();});Item(update is null?"Check for updates":"Update to "+update.Version,()=>{ShowMain();_ = CheckUpdatesAsync(true);});menu.Items.Add(new System.Windows.Controls.Separator());Item("Quit Nashi",()=>{if(busy){ShowMain();L10n.SetText(status,"Finish or cancel the current operation before quitting.");return;}quitting=true;Application.Current.Shutdown();});return menu;
     }
-    private void ApplyPreferences(){L10n.Language=preferences.Value.Language;Feedback.Enabled=preferences.Value.Feedback;WheelPresentation.Preferences=preferences.Value;}
+    private void ApplyPreferences(){var language=L10n.Language;L10n.Language=preferences.Value.Language;if(language!=L10n.Language&&IsLoaded)ExplorerMenu.Refresh();Feedback.Enabled=preferences.Value.Feedback;WheelPresentation.Preferences=preferences.Value;}
     private void ShowSettings(){new SettingsWindow(this,preferences,ApplyPreferences,()=>CheckUpdatesAsync(true),library).ShowDialog();appearance.SelectedItem=char.ToUpper(library.Appearance[0])+library.Appearance[1..];}
     private void OpenCopiedLink()
     {
@@ -40,8 +41,12 @@ public sealed partial class MainWindow
         Dispatcher.BeginInvoke(async()=>
         {
             if(busy)return;
-            if(paths is {Length:>0}&&!action.StartsWith("download:",StringComparison.Ordinal)){files.Clear();Add(paths);if(action.StartsWith("convert:",StringComparison.Ordinal))await EditAsync(new(action,"Convert","↗"));else if(new[]{"share","float","copy","move","copyPath","terminal"}.Contains(action))await PerformFileAction(action,paths);else await EditAsync(new(action,FeatureCatalog.ToolNames.GetValueOrDefault(action,action),"✦"));}
+            if(paths is {Length:>0}&&!action.StartsWith("download:",StringComparison.Ordinal))await RunFileChoice(action,paths);
             else if(payload is not null){link.Text=payload.Url;SetDownloadKind(payload,action.StartsWith("download:",StringComparison.Ordinal)?action[9..]:null);Show();WindowState=WindowState.Normal;Activate();OpenDownload();}
         });
+    }
+    private async Task RunFileChoice(string action,string[] paths)
+    {
+        files.Clear();Add(paths);if(action.StartsWith("convert:",StringComparison.Ordinal))await EditAsync(new(action,"Convert","↗"));else if(new[]{"share","float","copy","move","copyPath","terminal"}.Contains(action))await PerformFileAction(action,paths);else await EditAsync(new(action,FeatureCatalog.ToolNames.GetValueOrDefault(action,action),"✦"));
     }
 }
